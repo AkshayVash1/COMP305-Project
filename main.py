@@ -1,5 +1,4 @@
 import mysql.connector
-import pandas as pd
 
 # Connect to the MySQL database
 db = mysql.connector.connect(
@@ -46,10 +45,10 @@ run = True
 while run:
     print("Health and Fitness Club Management System:\n")
 
-    userInput = input("Please Select Your Role: Member | Staff:\n")
+    userInput = input("Please Select Your Role: (Member | Staff)\n")
 
     if userInput == "Member": 
-        userInput = input("What would you like to do: \nRegister | Sign In\n")
+        userInput = input("What would you like to do: \n(Register | Sign In)\n")
         if userInput == "Register":
             #No userInput check
             userInput = input("Please enter your Name: ")
@@ -81,7 +80,7 @@ while run:
             userInput = input("Please provide your email address: \n")
             user_address = userInput
 
-            userInput = input("What would you like to do: \nSchedule Session | Reschedule Session | View Profile | Exit \n")
+            userInput = input("What would you like to do: \n(Schedule Session | Reschedule Session | View Profile | Exit) \n")
 
             if userInput == "Schedule Session":
 
@@ -103,7 +102,7 @@ while run:
                 userInput = input("Please enter the date for the session you would like to reschedule: \n")
                 date = userInput
 
-                userInput = input("Would you like to cancel or change the date? (Cancel | Change | Exit): \n")
+                userInput = input("Would you like to cancel or change the date?\n(Cancel | Change | Exit): \n")
                 action = userInput
 
                 if action == "Cancel":
@@ -149,14 +148,14 @@ while run:
                 pass
 
     elif userInput == "Staff":
-        userInput = input("Select the kind of staff member: \nTrainer | Admin")
+        userInput = input("Select the kind of staff member: \n(Trainer | Admin)")
         staff = userInput
 
         userInput = input("Please provide your email address: \n")
         user_address = userInput
 
         if staff == "Trainer":
-            userInput = input("What would you like to do: \nAttend Session | View Member Profile | View Profile | Progress Notes | Exit \n")
+            userInput = input("What would you like to do: \n(Attend Session | View Member Profile | View Profile | Progress Notes | Exit) \n")
 
             if userInput == "Attend Session":
                 mycursor.execute("SELECT sessionID FROM member WHERE trainerID = (SELECT trainerID FROM trainer WHERE Email = '" + user_address + "')")
@@ -237,7 +236,7 @@ while run:
                     pass
 
         if staff == "Admin":
-            userInput = input("What would you like to do: \nOversee Session | Manage Resource | Exit \n")
+            userInput = input("What would you like to do: \n(Oversee Session | Manage Resource | Exit)\n")
 
             if userInput == "Oversee Session":
                 userInput = input("Please enter the date for the session you would like to oversee:\n")
@@ -283,6 +282,7 @@ while run:
         else:
             pass
     else:
+        run = False
         pass
 
             
